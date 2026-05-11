@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Samuel Cano❤️</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap);
+
+    *, ::before, ::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Quicksand", sans-serif;
+        background: linear-gradient(to bottom right, #ffecec, #fff5f5, #ffebeb);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 2rem;
+        overflow: hidden;
+        position: relative; /* Necesario para ubicar las fotos de fondo */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* --- DECORACIÓN DE FOTOS --- */
+    .decor-photo {
+        position: absolute;
+        width: 250px; /* Tamaño de las fotos */
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 5px solid white;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        z-index: 0; /* Para que queden detrás del sobre */
+        transition: transform 0.3s ease;
+    }
+
+    .decor-photo:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        z-index: 10;
+    }
+
+    /* Ubicación de las 4 fotos */
+    .p1 { top: 5%; left: 5%; transform: rotate(-10deg); }
+    .p2 { top: 5%; right: 5%; transform: rotate(10deg); }
+    .p3 { bottom: 5%; left: 5%; transform: rotate(5deg); }
+    .p4 { bottom: 5%; right: 5%; transform: rotate(-5deg); }
+
+    /* Ajuste para móviles (fotos más pequeñas) */
+    @media (max-width: 720px) {
+        .decor-photo {
+            width: 80px;
+            height: 80px;
+            border-width: 3px;
+        }
+    }
+
+    /* --- ESTILOS DEL SOBRE (Mantenemos el equilibrio que pediste) --- */
+    .envelope {
+        --duration: 1000ms;
+        --envelope-width: 300px;
+        --envelope-height: 175px;
+        --envelope-clr-bg: #d14d44;
+        --envelope-clr-bg-side: #c24e46;
+        --envelope-clr-bg-bottom: #e15349;
+        --envelope-clr-bg-top: #d14d44;
+        --envelope-clr-txt: #fff;
+        --envelope-transform-hover: rotateY(180deg);
+        --letter-height-hover: 420px; 
+
+        position: relative;
+        height: var(--envelope-height);
+        width: var(--envelope-width);
+        perspective: 1000px;
+        cursor: pointer;
+        z-index: 5; /* Por encima de las fotos */
+    }
+
+    @media (min-width: 720px) {
+        .envelope {
+            --envelope-width: 600px;
+            --envelope-height: 350px;
+            --letter-height-hover: 600px; 
+        }
+    }
+
+    .envelope:hover {
+        --envelope-transform: var(--envelope-transform-hover);
+        --fold-rotate: rotateX(180deg);
+        --letter-height: var(--letter-height-hover);
+    }
+
+    .envelope-inner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: var(--duration) ease-in-out;
+        transition-delay: 0ms;
+        transform-style: preserve-3d;
+        transform: var(--envelope-transform, rotateY(0deg));
+        display: grid;
+    }
+
+    .envelope-front, .envelope-back {
+        grid-area: 1/1;
+        width: 100%;
+        height: 100%;
+        background-color: var(--envelope-clr-bg);
+        backface-visibility: hidden;
+    }
+
+    .envelope-front {
+        color: var(--envelope-clr-txt);
+        display: grid;
+        place-content: center;
+        z-index: 2;
+    }
+
+    .envelope-back {
+        transform: rotateY(180deg);
+    }
+
+    .envelope-back::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        background-image: conic-gradient(transparent 60deg, var(--envelope-clr-bg-side) 60deg 120deg, var(--envelope-clr-bg-bottom) 120deg 240deg, var(--envelope-clr-bg-side) 240deg 300deg, transparent 300deg);
+        pointer-events: none;
+    }
+
+    .envelope-back .top-fold {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        background-color: var(--envelope-clr-bg-top);
+        clip-path: polygon(0% 0%, 50% 55%, 100% 0%);
+        transform: var(--fold-rotate, rotateX(0deg));
+        transform-origin: top;
+        transition: var(--duration) ease-in-out;
+        transition-delay: 750ms;
+    }
+
+    .letter {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        width: 92%;
+        height: var(--letter-height, 90%);
+        background: #fff;
+        z-index: 3;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: all var(--duration) ease-in-out;
+        transition-delay: 1250ms;
+        transform: translateX(-50%);
+        overflow-y: auto;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .envelope:hover .letter {
+        z-index: 6;
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+    }
+
+    .letter p { font-weight: bold; line-height: 1.5; color: #c0392b; font-size: 1rem; }
+    .highlight { display: block; margin-top: 15px; font-size: 1.4rem; color: #d14d44; font-weight: 800; padding: 10px; border: 2px solid #ffc1c1; border-radius: 10px; }
+    .custom-image { width: 60px; margin-bottom: 10px; }
+
+  </style>
+</head>
+<body>
+
+<img src="1.jpeg" class="decor-photo p1" alt="Foto 1">
+<img src="2.jpeg" class="decor-photo p2" alt="Foto 2">
+<img src="3.jpeg" class="decor-photo p3" alt="Foto 3">
+<img src="4.jpeg" class="decor-photo p4" alt="Foto 4">
+
+<div class="envelope">
+    <div class="envelope-inner">
+        <div class="envelope-front">
+            <div class="address">
+                <p><span>De parte de:</span> <span>Samuel Cano</span></p>
+                <p><span>Para:</span> <span>Mi ojitos lindos</span></p>
+            </div>
+        </div>
+
+        <div class="envelope-back">
+            <div class="top-fold"></div>
+            <div class="letter">
+                <img src="https://img.freepik.com/vector-premium/pulgar-dedos-imprimir-marca-huella-dactilar-amor-corazon_53500-1839.jpg" class="custom-image">
+                <p>
+                    ¡Feliz cumpleaños! ❤️<br><br>
+Hoy quiero decirte primero que todo quiero desearte un día de muchas bendiciones, que siempre tengas esa sonrisa y estés feliz, que hoy le den muchísimo cariño, te hagan sentir lo especial que eres, que Dios que te bendiga muchísimo, que siempre te cuide, te proteja y te permita cumplir muchísimos años más llenos de vida, amor,  te mereces mucho más que esto, porque eres una grandiosa mujer y por personita especial que eres,También quiero que nunca olvides lo capaz y valiosa que eres. Por eso deseo que siempre tengas motivos para seguir adelante, para confiar en ti, Sé que vienen cosas grandes para tu vida y espero que poco a poco puedas cumplir todo lo que quieres que se que lo vas a lograr, Hoy es tu día y quiero que disfrutes muchísimo, y bueno no tengo palabras para decirte lo mucho que te quiero y lo importante que eres y que siempre seas feliz ❤️.
+Disfruta muchísimo tu día, mi ojitos lindos 🫶🏽. 
+                   
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
